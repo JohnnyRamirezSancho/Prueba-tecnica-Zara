@@ -1,8 +1,31 @@
 <script setup>
+import { ref, onBeforeMount } from "vue";
+import { computed } from "@vue/reactivity";
+
+import ApiRepository from '../assets/ApiRepositories/ApiRepository'
+
 import HeadOne from '../components/HeadOne.vue';
 import CardHome from '../components/CardHome.vue'
 
-let totalResultSearch = 100;
+const repository = new ApiRepository("apple");
+const api = repository.chooseApi();
+let searchText = ref('');
+
+let podcasts = ref([]);
+onBeforeMount(async () => {
+  podcasts.value = await api.getAll();
+})
+
+const showThisPodcasts = computed(() => {
+  if(searchText.value == ""){
+    return podcasts;
+  }
+  let podcastsFiltered = ref([]);
+  podcastsFiltered.value = podcasts.value.filter(podcast => podcast.name.toLowerCase().indexOf(searchText.value.toLocaleLowerCase));
+  console.log(podcastsFiltered.value)
+  return podcastsFiltered
+});
+
 
 </script>
 
@@ -10,15 +33,11 @@ let totalResultSearch = 100;
   <main>
     <HeadOne></HeadOne>
     <div id="searchPodcast">
-      <p class="totalResult">{{ totalResultSearch }}</p>
+      <p class="totalResult">{{ showThisPodcasts.value.length }}</p>
       <input v-model="searchText" type="text" class="search" id="search" placeholder="Filter podcast..." required>
     </div>
     <div class="cardsPodcasts">
-      <CardHome></CardHome>
-      <CardHome></CardHome>
-      <CardHome></CardHome>
-      <CardHome></CardHome>
-      <CardHome></CardHome>
+      <CardHome v-for="podcast in showThisPodcasts.value" :podcast="podcast"></CardHome>
     </div>
   </main>
 </template>
