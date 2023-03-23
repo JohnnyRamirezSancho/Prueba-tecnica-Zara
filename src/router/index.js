@@ -10,8 +10,9 @@ const router = createRouter({
       component: HomeView
     },
     {
-      path: '/podcast',
+      path: '/podcast/:id',
       name: 'podcast',
+      props: true,
       component: () => import('../views/Podcast.vue')
     }
   ]

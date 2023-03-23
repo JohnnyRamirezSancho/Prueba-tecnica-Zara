@@ -1,9 +1,17 @@
 <script setup>
-import TheWelcome from '../components/TheWelcome.vue'
+import HeadOne from '../components/HeadOne.vue';
+
+const props = defineProps({
+  id: {
+    type: String,
+  },
+});
+
 </script>
 
 <template>
   <main>
-    <TheWelcome />
+    <HeadOne></HeadOne>
+    <p>{{ id }}</p>
   </main>
 </template>

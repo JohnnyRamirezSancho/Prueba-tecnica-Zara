@@ -9,7 +9,7 @@ import CardHome from '../components/CardHome.vue'
 
 const repository = new ApiRepository("apple");
 const api = repository.chooseApi();
-let searchText = ref('');
+let searchTextAuthorOrName = ref('');
 
 let podcasts = ref([]);
 onBeforeMount(async () => {
@@ -17,12 +17,11 @@ onBeforeMount(async () => {
 })
 
 const showThisPodcasts = computed(() => {
-  if(searchText.value == ""){
+  if(searchTextAuthorOrName.value == ""){
     return podcasts;
   }
   let podcastsFiltered = ref([]);
-  podcastsFiltered.value = podcasts.value.filter(podcast => podcast.name.toLowerCase().indexOf(searchText.value.toLocaleLowerCase));
-  console.log(podcastsFiltered.value)
+  podcastsFiltered.value = podcasts.value.filter(podcast => podcast.name.toLowerCase().includes(searchTextAuthorOrName.value.toLowerCase()) || podcast.artist.toLowerCase().includes(searchTextAuthorOrName.value.toLowerCase()));
   return podcastsFiltered
 });
 
@@ -34,9 +33,9 @@ const showThisPodcasts = computed(() => {
     <HeadOne></HeadOne>
     <div id="searchPodcast">
       <p class="totalResult">{{ showThisPodcasts.value.length }}</p>
-      <input v-model="searchText" type="text" class="search" id="search" placeholder="Filter podcast..." required>
+      <input v-model="searchTextAuthorOrName" type="text" class="search" id="search" placeholder="Filter podcast..." required>
     </div>
-    <div class="cardsPodcasts">
+    <div class="cardsPodcastsHome">
       <CardHome v-for="podcast in showThisPodcasts.value" :podcast="podcast"></CardHome>
     </div>
   </main>
@@ -71,8 +70,8 @@ main {
       }
     }
   }
-  .cardsPodcasts {
-    margin-top: 35px;
+  .cardsPodcastsHome {
+    margin-top: 70px;
     display: grid;
     gap: 15px;
     grid-template-columns: repeat(4, 1fr);

@@ -1,4 +1,4 @@
-import AppleRepository from "./appleApi/AppleRepository";
+import AppleAllPodcastRepository from "./appleApi/AppleAllPodcastRepository";
 
 export default class ApiRepository {
 
@@ -10,7 +10,7 @@ export default class ApiRepository {
     }
 
     chooseApi() {
-        if(this.api === "apple") return new AppleRepository;
+        if(this.api === "apple") return new AppleAllPodcastRepository;
     }
 
 }
