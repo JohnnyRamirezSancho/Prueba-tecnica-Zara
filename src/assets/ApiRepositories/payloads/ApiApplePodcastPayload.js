@@ -1,4 +1,4 @@
-export default class ApiAppleAllPodcastPayload {
+export default class ApiApplePodcastPayload {
     
     name;
     image;

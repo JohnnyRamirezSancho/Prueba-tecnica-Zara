@@ -7,7 +7,7 @@ import ApiRepository from '../assets/ApiRepositories/ApiRepository'
 import HeadOne from '../components/HeadOne.vue';
 import CardHome from '../components/CardHome.vue'
 
-const repository = new ApiRepository("apple");
+const repository = new ApiRepository("appleAllPodcast");
 const api = repository.chooseApi();
 let searchTextAuthorOrName = ref('');
 

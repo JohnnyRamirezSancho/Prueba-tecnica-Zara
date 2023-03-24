@@ -7,8 +7,9 @@
 h1 {
     color: $Blue;
     border-bottom: 1px solid $GrayLight;
-    padding-bottom: 5px;
+    padding-bottom: 10px;
     font-family: Inter;
     font-size: 1rem;
+    margin-bottom: 35px;
 }
 </styles>
