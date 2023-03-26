@@ -15,7 +15,7 @@ const props = defineProps({
             <img :src="podcast.image" :alt="podcast.name" />
         </figure>
         <div class="cardText">
-            <RouterLink :to="{ path: `/podcast/${podcast.id}`, params: { id: podcast.id } }">
+            <RouterLink :to="{ name: `podcast`, params: { id: podcast.id } }">
                 <h2>{{ podcast.name }}</h2>
                 <p>{{ podcast.artist }}</p>
             </RouterLink>

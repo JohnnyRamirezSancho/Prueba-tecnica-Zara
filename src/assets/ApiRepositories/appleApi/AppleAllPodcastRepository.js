@@ -1,12 +1,12 @@
 import ApiApplePodcastPayload from "../payloads/ApiApplePodcastPayload";
 
 export default class AppleAllPostcastRepository {
-  uri = "https://itunes.apple.com/us/rss/toppodcasts/limit=100/genre=1310/json";
+  url = "https://itunes.apple.com/us/rss/toppodcasts/limit=100/genre=1310/json";
 
   constructor() {}
 
   async getAll() {
-    const response = await fetch(this.uri);
+    const response = await fetch(this.url);
     const json = await response.json();
 
     let podcasts = [];

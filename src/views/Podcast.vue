@@ -15,9 +15,9 @@ const props = defineProps({
 const repository = new ApiRepository("appleOnePodcast");
 const api = repository.chooseApi();
 
-let podcasts = ref([]);
+let podcast = ref([]);
 onBeforeMount(async () => {
-  podcasts.value = await api.getAll(788236947);
+  podcast.value = await api.getAll(788236947);
 })
 
 </script>
@@ -31,10 +31,10 @@ onBeforeMount(async () => {
           <img src="" alt="" />
         </figure>
         <div class="infoPodcast">
-          <h2>{{ podcasts.name }}</h2>
-          <p class="author">Autor</p>
+          <h2>{{ podcast.results[0].collectionName }}</h2>
+          <p class="author">{{ podcast.results[0].artistName }}</p>
           <p><strong>Description</strong></p>
-          <p class="description">Descripción</p>
+          <p class="description">{{ podcast.results[0].trackViewUrl }}</p>
         </div>
       </div>
       <div class="epidodesPodcast">

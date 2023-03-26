@@ -1,25 +1,17 @@
-import ApiApplePodcastPayload from "../payloads/ApiApplePodcastPayload";
+import ApiAppleOnePodcastPayload from "../payloads/ApiAppleOnePodcastPayload";
 
 export default class AppleOnePodcastRepository {
+  urlToJson = "https://api.allorigins.win/raw?url=";
   url = "https://itunes.apple.com/lookup?id=";
 
   constructor() {}
 
   async getAll(id) {
-    this.url += id
-    const response = await fetch(this.url, { mode: 'no-cors'});
+    this.url = this.urlToJson + this.url + id;
+    const response = await fetch(this.url);
     const json = await response.json();
 
-    // let podcast = [];
-
-    // for (const podcast of json) {
-    //   const podcastToAdd = new ApiApplePodcastPayload(
-    //     podcast.collectionName,
-    //     podcast.artistName,
-    //     podcast.artworkUrl100,
-    //     podcast.collectionId
-    //   );
-    //   podcast.push(podcastToAdd);
-      return json;
-    }
+    console.log(json);
+    return json;
   }
+}
