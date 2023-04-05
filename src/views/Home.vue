@@ -14,6 +14,7 @@ let searchTextAuthorOrName = ref('');
 let podcasts = ref([]);
 onBeforeMount(async () => {
   podcasts.value = await api.getAll();
+  console.log(podcasts.value)
 })
 
 const showThisPodcasts = computed(() => {
